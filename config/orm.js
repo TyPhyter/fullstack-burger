@@ -5,38 +5,48 @@ const connection = require('./connection');
 const orm = {
 
     selectAll(table) {
-        let query = "SELECT * from ??";
-        connection.query(query, [table], (err, res) => {
-            if (err) throw err;
-            console.log(res);
-            return res;
+
+        return new Promise((resolve, reject) => {
+            let query = "SELECT * from ??";
+            connection.query(query, [table], (err, res) => {
+                if (err) throw err;
+                console.log(res);
+                resolve(res);
+            });
         });
+
     },
 
     insertOne(table, data) {
         //data is an object with column name/value pairs
-        let query = "INSERT INTO ?? SET ?";
-        connection.query(query, 
-            [table, data], 
-            (err, res) => {
-                if (err) throw err;
-                console.log(res);
-                return res;
+        return new Promise((resolve, reject) => {
+            let query = "INSERT INTO ?? SET ?";
+            connection.query(query,
+                [table, data],
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(res);
+                    resolve(res);
+                });
         });
     },
 
     updateOne(table, setData, whereData) {
-        let query = "UPDATE ?? SET ? WHERE ?";
-        connection.query(query, 
-            [table, setData, whereData], 
-            (err, res) => {
-                if (err) throw err;
-                console.log(res);
-                return res;
+        return new Promise((resolve, reject) => {
+            let query = "UPDATE ?? SET ? WHERE ?";
+            connection.query(query,
+                [table, setData, whereData],
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(res);
+                    return res;
+                });
         });
+        
     }
 
 }
+
 ////////////////////
 // USAGE
 ////////////////////
