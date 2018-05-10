@@ -9,7 +9,7 @@ const orm = {
         return new Promise((resolve, reject) => {
             let query = "SELECT * from ??";
             connection.query(query, [table], (err, res) => {
-                if (err) throw err;
+                if (err) reject(err);
                 console.log(res);
                 resolve(res);
             });
@@ -24,7 +24,7 @@ const orm = {
             connection.query(query,
                 [table, data],
                 (err, res) => {
-                    if (err) throw err;
+                    if (err) reject(err);
                     console.log(res);
                     resolve(res);
                 });
@@ -37,9 +37,9 @@ const orm = {
             connection.query(query,
                 [table, setData, whereData],
                 (err, res) => {
-                    if (err) throw err;
+                    if (err) reject(err);
                     console.log(res);
-                    return res;
+                    resolve(res);
                 });
         });
         
