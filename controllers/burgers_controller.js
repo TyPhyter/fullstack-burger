@@ -32,6 +32,10 @@ router.put('/burgers', (req, res) => {
         })
 });
 
+router.get('/', (req, res) => {
+    res.redirect('/burgers');
+});
+
 
 
 module.exports = router;
